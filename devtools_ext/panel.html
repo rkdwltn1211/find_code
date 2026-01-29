@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Traffic Feature Collector</title>
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 12px; }
+    .row { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    pre { background: #f6f8fa; padding: 10px; border-radius: 8px; overflow: auto; white-space: pre-wrap; }
+    .muted { color: #666; font-size: 12px; line-height: 1.5; }
+    .box { border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px; margin-top: 10px; }
+  </style>
+
+  <!-- ✅ TFJS 전역 로드(script src="tf.min.js") 제거 -->
+  <!-- ✅ predictor.js를 모듈로 로드해서 import로 tfjs 사용 -->
+  <script type="module" src="predictor.js"></script>
+
+  <!-- 나머지 로직(기존 구조 유지) -->
+  <script src="features.js"></script>
+  <script src="collector.js"></script>
+</head>
+
+<body>
+  <h2 style="margin:0 0 10px 0;">Traffic Feature Collector</h2>
+
+  <div class="row">
+    <button id="btnDownload">Download JSON</button>
+    <button id="btnClear">Clear</button>
+  </div>
+
+  <div class="muted">
+    Total seen: <span id="totalSeen">0</span><br/>
+    Kept: <span id="keptTotal">0</span> (benign: <span id="keptBenign">0</span>, suspicious: <span id="keptSuspicious">0</span>)<br/>
+    Skipped: <span id="skippedTotal">0</span><br/>
+    In-memory samples: <span id="memSamples">0</span>
+  </div>
+
+  <div class="box">
+    <div class="muted">ML / Debug</div>
+    <pre id="mlDebug"></pre>
+  </div>
+</body>
+</html>
